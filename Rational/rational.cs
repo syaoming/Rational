@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * IRREDUCIBLE_REPRESENTATAION is a preferrable cnfiguration when binary con-
+ * sistency is requred and performance is less a problem.
+ */
+#define IRREDUCIBLE_REPRESENTATION
+
+using System;
 
 namespace Math.Rational
 {
@@ -54,6 +60,9 @@ namespace Math.Rational
 
         public bool Equals(rational other)
         {
+#if IRREDUCIBLE_REPRESENTATION
+            return this.num == other.num && this.denom == other.denom;
+#else
             // both non-finite
             if (this.denom == 0 && other.denom == 0)
             {
@@ -66,9 +75,14 @@ namespace Math.Rational
             }
             // both finite
             return this.num * other.denom == this.denom * other.num;
+#endif
         }
+
+        // Convert to a unique, irreducible representation
+        private void Reduce()
+        { }
         
-        #region int compatibility
+#region int compatibility
 
         public static implicit operator rational(int n) 
         {
@@ -79,14 +93,14 @@ namespace Math.Rational
 
         public bool Equals(int other) { throw new NotImplementedException(); }
 
-        #endregion
+#endregion
 
-        #region float compatibility
+#region float compatibility
 
         public int CompareTo(float other) { throw new NotImplementedException(); }
 
         public bool Equals(float other) { throw new NotImplementedException(); }
 
-        #endregion
+#endregion
     }
 }

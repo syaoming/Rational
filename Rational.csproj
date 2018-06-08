@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Rational\rational.cs" />
+    <Compile Include="Rational\utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".git\lfs\objects\logs\" />
