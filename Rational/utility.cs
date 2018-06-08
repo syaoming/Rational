@@ -1,4 +1,6 @@
-﻿namespace Rational.Rational
+﻿using System;
+
+namespace Rational.Rational
 {
     public static class utility
     {
